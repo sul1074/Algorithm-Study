@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <vector>
 #include <map>
 
@@ -61,10 +61,10 @@ public:
 
 	bool empty() const { return heap.size() <= 1; }
 
-	int top() const {
+	int top() const { 
 		if (empty()) return -1;
 
-		return heap[1];
+		return heap[1]; 
 	}
 
 	void printHeap() const {
@@ -146,6 +146,10 @@ public:
 	}
 
 	void debug() const {
+		cout << "\n\n";
+		for (std::pair<int, int> n : pushedList) {
+			cout << n.first << ' ' << n.second << '\n';
+		}
 		cout << "Max : \n";
 		maxHeap.printHeap();
 
@@ -189,8 +193,8 @@ int main(void) {
 				break;
 			}
 		}
-		//queue.debug();
-		//cout << "\n\n";
+		// queue.debug();
+		// cout << "\n\n";
 
 		queue.printAns();
 	}
