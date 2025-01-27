@@ -155,6 +155,8 @@ public:
 
 		cout << "\nMin: \n";
 		minHeap.printHeap();
+
+		cout << '\n';
 	}
 
 	~DualPriorityQueue() {}
