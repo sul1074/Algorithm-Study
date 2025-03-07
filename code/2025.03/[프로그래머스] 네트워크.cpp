@@ -21,9 +21,6 @@ int solution(int n, vector<vector<int>> computers) {
     int answer = 0;
     vector<bool> visited(n, false);
     
-    for (int i = 0; i < n; ++i) 
-        computers[i][i] = 0;
-    
     for (int i = 0; i < n; ++i) {
         if (visited[i]) continue;
         
