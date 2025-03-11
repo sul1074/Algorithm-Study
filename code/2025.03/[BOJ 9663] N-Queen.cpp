@@ -4,9 +4,7 @@
 
 using namespace std;
 
-int ans = 0;
-
-void backtracking(vector<int>& chess, int currCol, int size) {
+void backtracking(vector<int>& chess, int currCol, int size, int& ans) {
 	if (currCol == size) {
 		++ans;
 		return;
@@ -24,17 +22,17 @@ void backtracking(vector<int>& chess, int currCol, int size) {
 
 		if (isPromising) {
 			chess[currCol] = rowPos;
-			backtracking(chess, currCol + 1, size);
+			backtracking(chess, currCol + 1, size, ans);
 		}
 	}
 }
 
 int main(void) {
-	int n;
+	int n, ans = 0;
 	cin >> n;
 	vector<int> chess(n);
 
-	backtracking(chess, 0, n);
+	backtracking(chess, 0, n, ans);
 
 	cout << ans << '\n';
 }
