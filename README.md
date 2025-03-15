@@ -1,2 +1,2 @@
 # Algorithm-Study
-backjoon, programmers etc..
+baekjoon, programmers etc..
