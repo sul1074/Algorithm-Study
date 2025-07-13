@@ -13,15 +13,12 @@ void sol(const string& input) {
 
 	int oddNum = 0;
 	char firstOddAlpha = '\0';
-	bool isSelected = false;
+
 	for (auto p : m) {
 		if (p.second % 2 == 1) {
 			++oddNum;
 
-			if (!isSelected) {
-				firstOddAlpha = p.first;
-				isSelected = true;
-			}
+			if (!firstOddAlpha) firstOddAlpha = p.first;
 		}
 	}
 
