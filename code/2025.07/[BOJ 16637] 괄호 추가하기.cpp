@@ -1,34 +1,33 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <string>
 #include <climits>
 
 using namespace std;
 
 int n;
+vector<int> num;
+vector<char> op;
 int ans = INT_MIN;
-int maxParenthes;
-string num;
-string op;
 
-int calc() {
-	int rst = num[0] - '0';
-	for (int i = 0; i < op.size(); ++i) {
-		switch (op[i]) {
-		case '+':
-			rst += (num[i + 1] - '0');
-			break;
-		case '-':
-			rst -= (num[i + 1] - '0');
-			break;
-		case '*':
-			rst *= (num[i + 1] - '0');
-			break;
-		}
+int calc(int a, int b, char oper) {
+	if (oper == '+') return a + b;
+	else if (oper == '-') return a - b;
+	else if (oper == '*') return a * b;
+}
+
+void backtracking(int depth, int curr) {
+	if (depth >= op.size()) {
+		ans = max(ans, curr);
+		return;
 	}
 
-	return rst;
+	backtracking(depth + 1, calc(curr, num[depth + 1], op[depth]));
+
+	if (depth + 1 < op.size()) {
+		int temp = calc(num[depth + 1], num[depth + 2], op[depth + 1]);
+		backtracking(depth + 2, calc(curr, temp, op[depth]));
+	}
 }
 
 int main(void) {
@@ -36,20 +35,16 @@ int main(void) {
 	cin.tie(NULL);
 
 	cin >> n;
+
 	char ch;
 	for (int i = 0; i < n; ++i) {
 		cin >> ch;
-		if (isdigit(ch)) num += ch;
-		else op += ch;
+		if (isdigit(ch)) num.push_back(ch - '0');
+		else op.push_back(ch);
 	}
-	maxParenthes = num.size() / 2;
 
-	cout << calc() << '\n';
+	backtracking(0, num.front());
+	cout << ans << '\n';
 
 	return 0;
 }
-
-/*
-* 괄호 안에는 하나의 연산자만 가능. 즉, 하나의 연산
-* 중첩 괄호 사용 불가
-*/
